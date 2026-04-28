@@ -1,43 +1,41 @@
-# 🧠 AllJobs Filter Extension
+# Qualitest Auto-Apply Chrome Extension 🚀
 
-A custom browser extension that automatically filters and expands job listings on [AllJobs](https://www.alljobs.co.il/User/JobsFeed/), making it easier for software developers to focus only on relevant job opportunities.
+A lightweight Chrome Extension designed to automate the initial steps of the job application process on the Qualitest career portal and SAP SuccessFactors.
 
----
+## ✨ Features
 
-## 🚀 Features
+- **Automated Button Clicking**: Automatically detects and clicks the 'Apply now' button on job description pages.
+- **Dropdown Navigation**: Handles multi-stage application menus, selecting the manual application option automatically.
+- **SAP Portal Integration**: Automatically triggers the 'Please sign in' modal when redirected to the SAP career portal.
+- **Duplicate Prevention**: Detects if you have already applied for a position, notifies the user, and automatically closes the tab after 3 seconds.
+- **Visual Feedback**: 
+  - **Status Banner**: A persistent banner indicating the extension is active.
+  - **Centered Toasts**: Large, clear notifications showing the current automated action.
 
-- ✅ Automatically filters job posts based on predefined criteria (e.g., _Software Development_).
-- ✅ Expands each relevant job post automatically for full visibility.
-- ✅ Displays a visual confirmation message that the filter is active.
-- ✅ Works seamlessly on the target page:
-  👉 **https://www.alljobs.co.il/User/JobsFeed/**
+## 🛠️ Installation
 
----
+1. **Download/Clone** this repository to your local machine.
+2. Open Google Chrome and navigate to `chrome://extensions/`.
+3. Enable **"Developer mode"** (toggle in the top right corner).
+4. Click **"Load unpacked"**.
+5. Select the folder containing the extension files.
 
-## ⚙️ How It Works
+## 📁 Project Structure
 
-1. The extension activates when visiting the target page.
-2. It injects a small script that filters job listings according to your preferences.
-3. All matching job posts are automatically expanded so you can read the full content without manual clicks.
-4. A green status message confirms that the filter is running.
+- `manifest.json`: Extension metadata, permissions, and domain matching rules.
+- `content.js`: Main logic for DOM manipulation and button detection.
+- `background.js`: Service worker handling tab management and closure.
+- `styles.css`: Custom styling for the banner and centered toast notifications.
 
----
+## ⚙️ How it Works
 
-## 🧩 Installation
+1. **Site Detection**: The extension activates on `careers.qualitestgroup.com` and `career44.sapsf.com`.
+2. **Logic Flow**:
+   - Checks if the text "You already applied for this position" exists. If so, counts down 3 seconds and closes the tab.
+   - If not applied, searches for the 'Apply now' button.
+   - Upon clicking, waits for the dropdown and selects the manual 'Apply Now' option.
+   - If on the SAP portal, searches for and clicks 'Please sign in'.
 
-1. Clone or download this repository.
-2. Open **chrome://extensions** in your browser.
-3. Enable **Developer Mode** (top-right corner).
-4. Click **Load unpacked** and select the folder containing this extension.
-5. Navigate to [AllJobs - Jobs Feed](https://www.alljobs.co.il/User/JobsFeed/) to see it in action.
+## 📝 License
 
----
-
-## 🛠️ Tech Stack
-
-- JavaScript (Vanilla)
-- DOM manipulation
-- Chrome Extension API
-- CSS for styling the floating message box
-
----
+This project is for personal use and automation efficiency. Use responsibly in accordance with site Terms of Service.
