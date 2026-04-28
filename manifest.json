@@ -11,7 +11,10 @@
   "host_permissions": ["https://*/*", "http://*/*"],
   "content_scripts": [
     {
-      "matches": ["https://careers.qualitestgroup.com/job/*"],
+      "matches": [
+        "https://careers.qualitestgroup.com/job/*",
+        "https://career44.sapsf.com/*"
+      ],
       "js": ["content.js"],
       "css": ["styles.css"],
       "run_at": "document_idle"
