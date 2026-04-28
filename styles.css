@@ -5,6 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%); /* Centers the element perfectly */
     background-color: #000000;
+    border: 7px solid rgb(40, 167, 69);;
     color: white;
     padding: 30px 50px;
     border-radius: 15px;
@@ -17,4 +18,44 @@
     text-align: center;
     pointer-events: none; /* Prevents the toast from interfering with clicks */
     transition: opacity 0.5s ease;
+}
+
+
+/******************** The extention message that indicates that the extension in working ********************/
+.my-extension-banner {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 999999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.my-extension-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.my-extension-close:hover {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transform: scale(1.3);
 }

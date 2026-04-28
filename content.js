@@ -1,3 +1,36 @@
+/*************************************************
+ * Banner Logic
+ *************************************************/
+let bannerClosed = false;
+
+function ensureExtensionBanner() {
+    if (!document.body || bannerClosed || document.querySelector('.my-extension-banner')) return;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'my-extension-banner';
+
+    const textSpan = document.createElement('span');
+    // Updated text content as requested
+    textSpan.innerHTML = '<div>🟢 תוסף הכרום לאתר פעיל</div>';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '×';
+    closeBtn.className = 'my-extension-close';
+
+    closeBtn.addEventListener('click', () => {
+        bannerClosed = true;
+        messageDiv.remove();
+    });
+
+    messageDiv.appendChild(textSpan);
+    messageDiv.appendChild(closeBtn);
+    document.body.appendChild(messageDiv);
+}
+
+/*************************************************
+ * Toast & Auto-Click Logic
+ *************************************************/
+
 // Function to create and show a temporary centered notification
 function showToast(message) {
     const toast = document.createElement('div');
@@ -22,8 +55,8 @@ function clickApplyButton() {
     
     for (let btn of buttons) {
         // Check if the button text matches "Apply now"
-        if (btn.innerText.trim() === "Apply now") {
-            showToast("כפתור ה-Apply now נמצא ויוקלק");
+        if (btn.innerText.trim() === 'Apply now') {
+            showToast('כפתור ה-Apply now נמצא ויוקלק');
             
             // Small delay after showing the message before clicking
             setTimeout(() => {
@@ -36,13 +69,20 @@ function clickApplyButton() {
     return false;
 }
 
-// Wait for the page to load and then search for the button
+/*************************************************
+ * Initialization
+ *************************************************/
+
+// Wait for the page to load and then trigger actions
 window.addEventListener('load', () => {
-    // 2-second delay to ensure dynamic content is loaded
+    // 1. Display the banner immediately if possible
+    ensureExtensionBanner();
+
+    // 2. Wait for dynamic content before searching for the button
     setTimeout(() => {
         const found = clickApplyButton();
         if (!found) {
-            console.log("Apply button not found on this page.");
+            console.log('Apply button not found on this page.');
         }
     }, 2000);
 });
